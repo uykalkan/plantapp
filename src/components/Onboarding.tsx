@@ -8,6 +8,7 @@ import OnboardingTwoScreen from '../screens/OnboardingTwoScreen';
 import {DirectEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
 import {OnPageSelectedEventData} from 'react-native-pager-view/src/PagerViewNativeComponent';
 import {OnPageScrollEventData} from 'react-native-pager-view/lib/typescript/PagerViewNativeComponent';
+import PaywallScreen from '../screens/PaywallScreen';
 
 const Onboarding: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,6 +44,9 @@ const Onboarding: React.FC = () => {
       </View>
       <View key="2">
         <OnboardingTwoScreen onPressButton={() => setPage(3)} />
+      </View>
+      <View key="3">
+        <PaywallScreen />
       </View>
     </PagerView>
   );

@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     ...globalStyles.sfProText700,
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 24,
     height: 24,
     letterSpacing: -0.24,
