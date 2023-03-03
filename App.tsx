@@ -1,23 +1,13 @@
 import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
 import Onboarding from './src/components/Onboarding';
+import HomeScreen from './src/screens/HomeScreen';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <Fragment>
-      <Onboarding />
+      {true && <Onboarding />}
 
-      <SafeAreaView>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <ScrollView contentInsetAdjustmentBehavior="automatic" />
-      </SafeAreaView>
+      <HomeScreen />
     </Fragment>
   );
 }
