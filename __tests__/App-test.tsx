@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App, {Section} from '../App';
+import App from '../App';
 import {render} from '@testing-library/react-native';
+import Onboarding from '../src/components/Onboarding';
 
 describe('App component', () => {
   it('displays the welcome text', () => {
@@ -10,11 +11,9 @@ describe('App component', () => {
   });
 });
 
-describe('Section component', () => {
+describe('Onboarding component', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<Section title="Test">Test content</Section>)
-      .toJSON();
+    const tree = renderer.create(<Onboarding />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
