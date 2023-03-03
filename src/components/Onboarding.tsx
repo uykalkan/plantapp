@@ -7,7 +7,6 @@ import OnboardingOneScreen from '../screens/OnboardingOneScreen';
 import OnboardingTwoScreen from '../screens/OnboardingTwoScreen';
 import {DirectEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
 import {OnPageSelectedEventData} from 'react-native-pager-view/src/PagerViewNativeComponent';
-import {OnPageScrollEventData} from 'react-native-pager-view/lib/typescript/PagerViewNativeComponent';
 import PaywallScreen from '../screens/PaywallScreen';
 
 const Onboarding: React.FC = () => {
