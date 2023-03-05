@@ -1,6 +1,6 @@
 import {CategoryResponse} from '../types/Category';
 
-export const getCategories: () => CategoryResponse = () => {
+export const getCategoriesMock: () => CategoryResponse = () => {
   return {
     data: [
       {

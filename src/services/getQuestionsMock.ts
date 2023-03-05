@@ -1,6 +1,6 @@
 import {Question} from '../types/Question';
 
-export const getQuestions: () => Question[] = () => {
+export const getQuestionsMock: () => Question[] = () => {
   return [
     {
       id: 1,

@@ -42,5 +42,5 @@ export interface Meta {
 
 export interface CategoryResponse {
   data: Category[];
-  meta: Meta;
+  meta?: Meta;
 }

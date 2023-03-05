@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   FlatList,
   FlatListProps,
   Image,
   ImageBackground,
+  RefreshControl,
   SafeAreaView,
   ScrollView,
   Text,
@@ -12,14 +13,40 @@ import {
 import {styles} from './styles';
 import SearchIcon from '../../assets/images/home/searchIcon.svg';
 import EnvelopeIcon from '../../assets/images/home/envelopeIcon.svg';
-import {getCategories} from '../../services/getCategories';
 import {Category} from '../../types/Category';
-import {getQuestions} from '../../services/getQuestions';
 import {Question} from '../../types/Question';
 import Input from '../../components/Input';
 import IosRightIcon from '../../assets/images/home/iosRightIcon.svg';
+import {useAppDispatch, useAppSelector} from '../../redux/store';
+import {getCategories} from '../../redux/reduces/categorySlice';
+import {getQuestions} from '../../redux/reduces/questionSlice';
+import {NativeStackScreenProps} from 'react-native-screens/native-stack';
 
-const HomeScreen: React.FC = () => {
+const HomeScreen: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
+  const dispatch = useAppDispatch();
+
+  const onRefresh = React.useCallback(() => {
+    dispatch(getQuestions());
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    return navigation.addListener('focus', () => {
+      dispatch(getQuestions());
+      dispatch(getCategories());
+    });
+  }, [dispatch, navigation]);
+
+  const {categories, loading: categoriesIsLoading} = useAppSelector(
+    state => state.category,
+  );
+
+  const {questions, loading: questionsIsLoading} = useAppSelector(
+    state => state.question,
+  );
+
+  useEffect(() => {}, [dispatch]);
+
   const renderCategoryItem: FlatListProps<Category>['renderItem'] = ({
     item,
   }) => {
@@ -52,7 +79,13 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={styles.root}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={categoriesIsLoading || questionsIsLoading}
+            onRefresh={onRefresh}
+          />
+        }>
         <View style={styles.header}>
           <SafeAreaView>
             <View style={styles.greeting}>
@@ -91,7 +124,7 @@ const HomeScreen: React.FC = () => {
           contentContainerStyle={styles.questionContainer}
           style={styles.questionList}
           horizontal
-          data={getQuestions()}
+          data={questions}
           renderItem={renderQuestionItem}
           keyExtractor={item => String(item.id)}
         />
@@ -99,7 +132,7 @@ const HomeScreen: React.FC = () => {
         <FlatList
           scrollEnabled={false}
           contentContainerStyle={styles.categoryContainer}
-          data={getCategories().data}
+          data={categories.data}
           numColumns={2}
           renderItem={renderCategoryItem}
           keyExtractor={item => String(item.id)}
