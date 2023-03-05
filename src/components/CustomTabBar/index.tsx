@@ -95,3 +95,5 @@ export const CustomTabBar: React.FC<BottomTabBarProps> = ({
     </SafeAreaView>
   );
 };
+
+export default CustomTabBar;

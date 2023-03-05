@@ -39,7 +39,11 @@ const GetStartedScreen: React.FC<GetStartedScreenProps> = ({onPressButton}) => {
           />
         </View>
 
-        <Button onPress={onPressButton} title="Get Started" />
+        <Button
+          testID="get-started-button"
+          onPress={onPressButton}
+          title="Get Started"
+        />
 
         <Text style={styles.term}>
           By tapping next, you are agreeing to PlantID Terms of Use & Privacy

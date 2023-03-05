@@ -30,6 +30,7 @@ const Onboarding: React.FC = () => {
 
   return (
     <PagerView
+      testID="onboarding-screen"
       scrollEnabled={scrollIsEnabled}
       ref={pagerViewRef}
       onPageSelected={handlePageSelected}

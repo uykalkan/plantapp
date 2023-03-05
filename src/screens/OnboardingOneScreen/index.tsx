@@ -40,7 +40,11 @@ const OnboardingOneScreen: React.FC<OnboardingOneScreenProps> = ({
           />
         </View>
 
-        <Button onPress={onPressButton} title="Continue" />
+        <Button
+          testID="onboarding-one-screen-button"
+          onPress={onPressButton}
+          title="Continue"
+        />
 
         <Pagination style={styles.pagination} selectedIndex={0} totalPage={3} />
       </View>

@@ -51,7 +51,7 @@ const HomeScreen: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
     item,
   }) => {
     return (
-      <View style={styles.categoryWrapper}>
+      <View style={styles.categoryWrapper} testID="home-screen">
         <View style={styles.categoryInner}>
           <Image
             source={{uri: item.image.url}}
