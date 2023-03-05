@@ -9,21 +9,28 @@ import HealthCareIcon from './src/assets/images/healthCareIcon.svg';
 import ProfileIcon from './src/assets/images/profileIcon.svg';
 import GardenIcon from './src/assets/images/gardenIcon.svg';
 import {CustomTabBar} from './src/components/CustomTabBar';
+import {Provider, useSelector} from 'react-redux';
+import {persistor, RootState, store} from './src/redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 function App(): JSX.Element {
+  const onboardingIsShown = useSelector<RootState>(
+    state => state.onboarding.isShown,
+  );
+
   return (
     <Fragment>
-      {true && <Onboarding />}
+      {!onboardingIsShown && <Onboarding />}
 
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{
             headerShown: false,
-            tabBarStyle: {overflow: undefined},
           }}
-          tabBar={CustomTabBar}>
+          tabBar={(tabBarProps: any) => <CustomTabBar {...tabBarProps} />}>
           <Tab.Screen
             options={{tabBarIcon: HomeIcon}}
             name="Home"
@@ -50,4 +57,14 @@ function App(): JSX.Element {
   );
 }
 
-export default App;
+function AppWithProviders(): JSX.Element {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={<Text>Loading...</Text>} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  );
+}
+
+export default AppWithProviders;

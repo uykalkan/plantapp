@@ -1,4 +1,5 @@
 import {
+  Alert,
   Animated,
   FlatList,
   SafeAreaView,
@@ -15,6 +16,8 @@ import Button from '../../components/Button';
 import FasterIcon from '../../assets/images/paywall/faster.svg';
 import UnlimitedIcon from '../../assets/images/paywall/unlimited.svg';
 import CloseIcon from '../../assets/images/paywall/close.svg';
+import {onBoardingActions} from '../../redux/reduces/onboardingSlice';
+import {useDispatch} from 'react-redux';
 
 interface PaywallOptionProps extends TouchableOpacityProps {
   title?: string;
@@ -83,9 +86,17 @@ const features = [
 
 const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
   const [selectedOption, setSelectedOption] = React.useState(0);
+  const dispatch = useDispatch();
 
   const handleSelectOption = (id: number) => {
     setSelectedOption(id);
+  };
+
+  const onClose = () => {
+    dispatch(onBoardingActions.setOnboardingShown());
+    Alert.alert(
+      'Onboarding kapandı, tekrar gezinmek isterseniz aşağıdaki menünün ortasındaki yeşil butona basın',
+    );
   };
 
   return (
@@ -152,7 +163,7 @@ const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
         </View>
       </SafeAreaView>
 
-      <TouchableOpacity style={styles.closeButton}>
+      <TouchableOpacity onPress={onClose} style={styles.closeButton}>
         <CloseIcon />
       </TouchableOpacity>
     </View>

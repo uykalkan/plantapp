@@ -10,6 +10,8 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs/src/types';
 import {SvgProps} from 'react-native-svg';
 import ScanIcon from '../../assets/images/scanIcon.svg';
 import {styles} from './styles';
+import {onBoardingActions} from '../../redux/reduces/onboardingSlice';
+import {useAppDispatch} from '../../redux/store';
 
 interface TabBarTabProps extends TouchableOpacityProps {
   icon?: ReactNode;
@@ -34,8 +36,12 @@ const Tab: React.FC<TabBarTabProps> = ({icon, title, isActive, ...props}) => {
   );
 };
 
-export const CustomTabBar: React.FC<BottomTabBarProps> = props => {
-  const {state, descriptors, navigation} = props;
+export const CustomTabBar: React.FC<BottomTabBarProps> = ({
+  state,
+  descriptors,
+  navigation,
+}) => {
+  const dispatch = useAppDispatch();
 
   const getTabProps = (tabIndex: number) => {
     let icon;
@@ -69,12 +75,18 @@ export const CustomTabBar: React.FC<BottomTabBarProps> = props => {
     return {title, icon, isActive, onPress};
   };
 
+  const onPressCenterButton = () => {
+    dispatch(onBoardingActions.resetOnboardingShown());
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.tabBar}>
         <Tab {...getTabProps(0)} />
         <Tab {...getTabProps(1)} />
-        <TouchableOpacity style={styles.centerButton}>
+        <TouchableOpacity
+          onPress={onPressCenterButton}
+          style={styles.centerButton}>
           <ScanIcon />
         </TouchableOpacity>
         <Tab {...getTabProps(2)} />
