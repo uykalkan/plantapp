@@ -10,14 +10,14 @@ import {
   View,
 } from 'react-native';
 import {styles} from './styles';
-import SearchIcon from '../../assets/home/searchIcon.svg';
-import EnvelopeIcon from '../../assets/home/envelopeIcon.svg';
+import SearchIcon from '../../assets/images/home/searchIcon.svg';
+import EnvelopeIcon from '../../assets/images/home/envelopeIcon.svg';
 import {getCategories} from '../../services/getCategories';
 import {Category} from '../../types/Category';
 import {getQuestions} from '../../services/getQuestions';
 import {Question} from '../../types/Question';
 import Input from '../../components/Input';
-import IosRightIcon from '../../assets/home/iosRightIcon.svg';
+import IosRightIcon from '../../assets/images/home/iosRightIcon.svg';
 
 const HomeScreen: React.FC = () => {
   const renderCategoryItem: FlatListProps<Category>['renderItem'] = ({
@@ -70,7 +70,7 @@ const HomeScreen: React.FC = () => {
 
           <Image
             style={styles.headerBackgroundImage}
-            source={require('../../assets/home/headerBg.png')}
+            source={require('../../assets/images/home/headerBg.png')}
           />
         </View>
         <View style={styles.premiumBox}>

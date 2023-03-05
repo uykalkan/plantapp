@@ -12,9 +12,9 @@ import React from 'react';
 import Image = Animated.Image;
 import {styles} from './styles';
 import Button from '../../components/Button';
-import FasterIcon from '../../assets/paywall/faster.svg';
-import UnlimitedIcon from '../../assets/paywall/unlimited.svg';
-import CloseIcon from '../../assets/paywall/close.svg';
+import FasterIcon from '../../assets/images/paywall/faster.svg';
+import UnlimitedIcon from '../../assets/images/paywall/unlimited.svg';
+import CloseIcon from '../../assets/images/paywall/close.svg';
 
 interface PaywallOptionProps extends TouchableOpacityProps {
   title?: string;
@@ -35,26 +35,11 @@ const PaywallOption: React.FC<PaywallOptionProps> = ({
       style={[styles.paywallOption, selected && styles.paywallOptionSelected]}
       {...props}>
       <View
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 24,
-          height: 24,
-          backgroundColor: selected ? '#28AF6E' : 'rgba(255, 255, 255, 0.15)',
-          margin: 16,
-          borderRadius: 12,
-        }}>
-        {selected && (
-          <View
-            style={{
-              width: 8,
-              height: 8,
-              backgroundColor: '#fff',
-              borderRadius: 4,
-            }}
-          />
-        )}
+        style={[
+          styles.paywallOptionRadio,
+          selected && styles.paywallOptionRadioSelected,
+        ]}>
+        {selected && <View style={styles.paywallOptionRadioInner} />}
       </View>
 
       <View>
@@ -96,9 +81,7 @@ const features = [
   },
 ];
 
-const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> = ({
-  onPressButton,
-}) => {
+const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
   const [selectedOption, setSelectedOption] = React.useState(0);
 
   const handleSelectOption = (id: number) => {
@@ -115,7 +98,7 @@ const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> = ({
         resizeMode="cover"
       />
 
-      <SafeAreaView style={{zIndex: 1}}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <View style={styles.top}>
             <Text style={styles.title}>
@@ -155,7 +138,7 @@ const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> = ({
           />
 
           <Button
-            style={{marginTop: 10}}
+            style={styles.tryButton}
             onPress={onPressButton}
             title="Try free for 3 days"
           />
@@ -176,4 +159,4 @@ const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> = ({
   );
 };
 
-export default OnboardingTwoScreen;
+export default PaywallScreen;

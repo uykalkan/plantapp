@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {globalStyles} from '../../constants/globalStyles';
+import {theme} from '../../constants/theme';
 
 export const styles = StyleSheet.create({
   root: {
@@ -163,4 +164,23 @@ export const styles = StyleSheet.create({
     top: 55,
     right: 16,
   },
+  paywallOptionRadio: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 24,
+    height: 24,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    margin: 16,
+    borderRadius: 12,
+  },
+  paywallOptionRadioSelected: {backgroundColor: theme.primaryColor},
+  paywallOptionRadioInner: {
+    width: 8,
+    height: 8,
+    backgroundColor: '#fff',
+    borderRadius: 4,
+  },
+  safeArea: {zIndex: 1},
+  tryButton: {marginTop: 10},
 });
