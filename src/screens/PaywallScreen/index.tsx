@@ -66,19 +66,19 @@ interface OnboardingTwoScreenProps {
 const features = [
   {
     id: '1',
-    icon: () => <UnlimitedIcon />,
+    icon: <UnlimitedIcon />,
     title: 'Unlimited',
     subTitle: 'Plant Identify',
   },
   {
     id: '2',
-    icon: () => <FasterIcon />,
+    icon: <FasterIcon />,
     title: 'Faster',
     subTitle: 'Process',
   },
   {
     id: '3',
-    icon: () => <FasterIcon />,
+    icon: <FasterIcon />,
     title: 'Detailed',
     subTitle: 'Plant care',
   },
@@ -123,7 +123,7 @@ const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
             data={features}
             renderItem={({item}) => (
               <View key={item.id} style={styles.featureListItem}>
-                <View style={styles.featureListItemIcon}>{item.icon()}</View>
+                <View style={styles.featureListItemIcon}>{item.icon}</View>
                 <Text style={styles.featureListItemTitle}>{item.title}</Text>
                 <Text style={styles.featureListItemSubTitle}>
                   {item.subTitle}
