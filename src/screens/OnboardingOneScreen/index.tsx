@@ -1,5 +1,6 @@
 import {
   Animated,
+  Platform,
   SafeAreaView,
   Text,
   TouchableOpacityProps,
@@ -10,18 +11,31 @@ import Image = Animated.Image;
 import {styles} from './styles';
 import Button from '../../components/Button';
 import Pagination from '../../components/Pagination';
+import {theme} from '../../constants/theme';
 
 interface OnboardingOneScreenProps {
   onPressButton?: TouchableOpacityProps['onPress'];
 }
 
-const OnboardingOneScreen: React.FC<OnboardingOneScreenProps> = ({
-  onPressButton,
-}) => {
+interface OnboardingOneScreenFooterProps {
+  onPressButton?: TouchableOpacityProps['onPress'];
+}
+
+const OnboardingOneScreen: React.FC<OnboardingOneScreenProps> & {
+  Footer: React.FC<OnboardingOneScreenFooterProps>;
+} = () => {
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.container}>
-        <View style={styles.top}>
+      <View
+        style={{
+          ...styles.container,
+          paddingBottom: theme.onBoardingFooterHeight,
+        }}>
+        <View
+          style={{
+            ...styles.top,
+            marginTop: Platform.OS === 'android' ? theme.containerSpace : 0,
+          }}>
           <Image
             style={styles.brush}
             source={require('../../assets/images/brush.png')}
@@ -39,16 +53,22 @@ const OnboardingOneScreen: React.FC<OnboardingOneScreenProps> = ({
             source={require('../../assets/images/onboardingOneMain.png')}
           />
         </View>
-
-        <Button
-          testID="onboarding-one-screen-button"
-          onPress={onPressButton}
-          title="Continue"
-        />
-
-        <Pagination style={styles.pagination} selectedIndex={0} totalPage={3} />
       </View>
     </SafeAreaView>
+  );
+};
+
+OnboardingOneScreen.Footer = ({onPressButton}) => {
+  return (
+    <View style={styles.footer}>
+      <Button
+        testID="onboarding-screen-one-button"
+        onPress={onPressButton}
+        title="Continue"
+      />
+
+      <Pagination style={styles.pagination} selectedIndex={0} totalPage={3} />
+    </View>
   );
 };
 

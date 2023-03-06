@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     padding: 24,
+    flex: 1,
   },
   backgroundImage: {
     position: 'absolute',
@@ -32,6 +33,7 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 33,
     letterSpacing: -1,
+    width: 315,
   },
   titleBold: {
     ...globalStyles.rubik800,
@@ -39,16 +41,23 @@ export const styles = StyleSheet.create({
   content: {
     flexDirection: 'column',
     alignItems: 'center',
+    flex: 1,
   },
   mainImage: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    width: 375,
-    height: 530,
     marginTop: 12,
+    flex: 1,
+    marginBottom: -24, // TODO: image bottom space
   },
   pagination: {
     marginTop: 32.5,
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'column',
+    zIndex: 3,
+    height: 120,
   },
 });

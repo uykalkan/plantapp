@@ -1,5 +1,6 @@
 import {
   Animated,
+  Platform,
   SafeAreaView,
   Text,
   TouchableOpacityProps,
@@ -10,18 +11,31 @@ import Image = Animated.Image;
 import {styles} from './styles';
 import Button from '../../components/Button';
 import Pagination from '../../components/Pagination';
+import {theme} from '../../constants/theme';
 
 interface OnboardingTwoScreenProps {
   onPressButton?: TouchableOpacityProps['onPress'];
 }
 
-const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> = ({
-  onPressButton,
-}) => {
+interface OnboardingTwoScreenFooterProps {
+  onPressButton?: TouchableOpacityProps['onPress'];
+}
+
+const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> & {
+  Footer: React.FC<OnboardingTwoScreenFooterProps>;
+} = () => {
   return (
     <SafeAreaView style={styles.root}>
-      <View style={styles.container}>
-        <View style={styles.top}>
+      <View
+        style={{
+          ...styles.container,
+          paddingBottom: theme.onBoardingFooterHeight,
+        }}>
+        <View
+          style={{
+            ...styles.top,
+            marginTop: Platform.OS === 'android' ? theme.containerSpace : 0,
+          }}>
           <Image
             style={styles.brush}
             source={require('../../assets/images/brush.png')}
@@ -39,12 +53,22 @@ const OnboardingTwoScreen: React.FC<OnboardingTwoScreenProps> = ({
             source={require('../../assets/images/onboardingTwoMain.png')}
           />
         </View>
-
-        <Button onPress={onPressButton} title="Continue" />
-
-        <Pagination style={styles.pagination} selectedIndex={1} totalPage={3} />
       </View>
     </SafeAreaView>
+  );
+};
+
+OnboardingTwoScreen.Footer = ({onPressButton}) => {
+  return (
+    <View style={styles.footer}>
+      <Button
+        testID="onboarding-two-screen-button"
+        onPress={onPressButton}
+        title="Continue"
+      />
+
+      <Pagination style={styles.pagination} selectedIndex={1} totalPage={3} />
+    </View>
   );
 };
 

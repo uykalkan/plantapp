@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
   },
   container: {
     padding: 24,
+    paddingTop: 24,
+    display: 'flex',
+    flex: 1,
   },
   backgroundImage: {
     position: 'absolute',
@@ -39,9 +42,12 @@ export const styles = StyleSheet.create({
   content: {
     flexDirection: 'column',
     alignItems: 'center',
+    flex: 1,
   },
   centerImage: {
+    flex: 1,
     marginTop: 24,
+    marginBottom: -24, // TODO: image bottom space
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -55,11 +61,19 @@ export const styles = StyleSheet.create({
     ...globalStyles.rubik400,
     alignSelf: 'center',
     width: 232,
-    top: 17,
     fontSize: 11,
     lineHeight: 15,
     textAlign: 'center',
     letterSpacing: 0.07,
     color: 'rgba(89, 113, 101, 0.7)',
+    zIndex: 2,
+    marginTop: 17,
+    flex: 1,
+  },
+  footer: {
+    display: 'flex',
+    flexDirection: 'column',
+    zIndex: 3,
+    height: 120,
   },
 });

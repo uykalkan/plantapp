@@ -64,7 +64,7 @@ describe('Onboarding Test', () => {
     fireEvent.press(button);
 
     await waitFor(() => {
-      expect(getByTestId('onboarding-one-screen-button')).toBeDefined();
+      expect(getByTestId('onboarding-screen-one-button')).toBeDefined();
     });
   });
 });
