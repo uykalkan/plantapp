@@ -3,6 +3,7 @@ import {
   Animated,
   FlatList,
   SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
@@ -99,7 +100,7 @@ const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
   };
 
   return (
-    <View style={styles.root}>
+    <ScrollView style={styles.root}>
       <Image
         source={require('../../assets/images/paywallBackground.png')}
         style={styles.backgroundImage}
@@ -163,7 +164,7 @@ const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
       <TouchableOpacity onPress={onClose} style={styles.closeButton}>
         <CloseIcon />
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
