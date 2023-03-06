@@ -1,6 +1,6 @@
 import {useSelector} from 'react-redux';
 import {RootState} from './src/redux/store';
-import React, {Fragment} from 'react';
+import React from 'react';
 import Onboarding from './src/components/Onboarding';
 import {NavigationContainer} from '@react-navigation/native';
 import {CustomTabBar} from './src/components/CustomTabBar';
@@ -11,7 +11,7 @@ import ComingSoonScreen from './src/screens/ComingSoonScreen';
 import GardenIcon from './src/assets/images/gardenIcon.svg';
 import ProfileIcon from './src/assets/images/profileIcon.svg';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +22,15 @@ export function AppContainer(): JSX.Element {
 
   return (
     <View testID="app-container" style={{flex: 1}}>
-      {!onboardingIsShown && <Onboarding />}
+      {!onboardingIsShown ? (
+        <Onboarding />
+      ) : (
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle="dark-content"
+        />
+      )}
 
       <NavigationContainer>
         <Tab.Navigator
