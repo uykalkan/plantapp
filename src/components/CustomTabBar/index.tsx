@@ -1,4 +1,5 @@
 import {
+  Platform,
   SafeAreaView,
   Text,
   TouchableOpacity,
@@ -81,12 +82,19 @@ export const CustomTabBar: React.FC<BottomTabBarProps> = ({
 
   return (
     <SafeAreaView>
-      <View style={styles.tabBar}>
+      <View
+        style={[
+          styles.tabBar,
+          Platform.OS === 'android' && styles.tabBarAndroid,
+        ]}>
         <Tab {...getTabProps(0)} />
         <Tab {...getTabProps(1)} />
         <TouchableOpacity
           onPress={onPressCenterButton}
-          style={styles.centerButton}>
+          style={[
+            styles.centerButton,
+            Platform.OS === 'android' && styles.centerButtonAndroid,
+          ]}>
           <ScanIcon />
         </TouchableOpacity>
         <Tab {...getTabProps(2)} />

@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
   },
+  tabBarAndroid: {
+    paddingBottom: 8,
+  },
   centerButton: {
     width: 64,
     height: 64,
@@ -19,6 +22,9 @@ export const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  centerButtonAndroid: {
+    borderColor: '#5bc291',
   },
   tab: {
     height: 50,
