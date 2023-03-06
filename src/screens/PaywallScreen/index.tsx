@@ -3,7 +3,6 @@ import {
   Animated,
   FlatList,
   SafeAreaView,
-  StatusBar,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
@@ -101,8 +100,6 @@ const PaywallScreen: React.FC<OnboardingTwoScreenProps> = ({onPressButton}) => {
 
   return (
     <View style={styles.root}>
-      <StatusBar barStyle="light-content" />
-
       <Image
         source={require('../../assets/images/paywallBackground.png')}
         style={styles.backgroundImage}

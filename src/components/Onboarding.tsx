@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import PagerView from 'react-native-pager-view';
 import {globalStyles} from '../constants/globalStyles';
 import GetStartedScreen from '../screens/GetStartedScreen';
@@ -29,26 +29,32 @@ const Onboarding: React.FC = () => {
   };
 
   return (
-    <PagerView
-      testID="onboarding-screen"
-      scrollEnabled={scrollIsEnabled}
-      ref={pagerViewRef}
-      onPageSelected={handlePageSelected}
-      style={styles.root}
-      initialPage={0}>
-      <View key="0">
-        <GetStartedScreen onPressButton={() => setPage(1)} />
-      </View>
-      <View key="1">
-        <OnboardingOneScreen onPressButton={() => setPage(2)} />
-      </View>
-      <View key="2">
-        <OnboardingTwoScreen onPressButton={() => setPage(3)} />
-      </View>
-      <View key="3">
-        <PaywallScreen />
-      </View>
-    </PagerView>
+    <>
+      <StatusBar
+        barStyle={currentPage === 3 ? 'light-content' : 'dark-content'}
+      />
+
+      <PagerView
+        testID="onboarding-screen"
+        scrollEnabled={scrollIsEnabled}
+        ref={pagerViewRef}
+        onPageSelected={handlePageSelected}
+        style={styles.root}
+        initialPage={0}>
+        <View key="0">
+          <GetStartedScreen onPressButton={() => setPage(1)} />
+        </View>
+        <View key="1">
+          <OnboardingOneScreen onPressButton={() => setPage(2)} />
+        </View>
+        <View key="2">
+          <OnboardingTwoScreen onPressButton={() => setPage(3)} />
+        </View>
+        <View key="3">
+          <PaywallScreen />
+        </View>
+      </PagerView>
+    </>
   );
 };
 
