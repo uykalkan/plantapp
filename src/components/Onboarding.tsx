@@ -31,6 +31,8 @@ const Onboarding: React.FC = () => {
   return (
     <>
       <StatusBar
+        translucent
+        backgroundColor="transparent"
         barStyle={currentPage === 3 ? 'light-content' : 'dark-content'}
       />
 
