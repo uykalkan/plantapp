@@ -4,6 +4,7 @@ import {
   FlatListProps,
   Image,
   ImageBackground,
+  Platform,
   RefreshControl,
   SafeAreaView,
   ScrollView,
@@ -78,7 +79,8 @@ const HomeScreen: React.FC<NativeStackScreenProps<any>> = ({navigation}) => {
   };
 
   return (
-    <View style={styles.root}>
+    <View
+      style={[styles.root, Platform.OS === 'android' && styles.rootAndroid]}>
       <ScrollView
         refreshControl={
           <RefreshControl
