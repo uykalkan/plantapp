@@ -160,4 +160,7 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
     gap: 16,
   },
+  rootAndroid: {
+    paddingTop: 24,
+  },
 });
